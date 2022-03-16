@@ -1,9 +1,9 @@
-<div id="chatroom_container" class="row bg-light text-light">
+<div id="chatroom_container" class="row bg-dark text-light">
   <div id="side_panel" class="col-md-4 col-sm-4">
         <%# <h5> <%= current_user.email %>
          <%# </h5>  %>
 
-        <h3 style="margin: 5px; color: black"> Users </h3>
+        <h3 style="margin: 5px; color: white"> Users </h3>
         <div>
             <%= turbo_stream_from "users" %>
             <div id="users">
@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <h3 style="margin: 5px; color: black"> Rooms </h3>
+        <h3 style="margin: 5px; color: white"> Rooms </h3>
         <div>
             <%= turbo_stream_from "rooms" %>
             <div id="rooms">
@@ -21,9 +21,9 @@
         </div>
     </div>
 
-    <div class="col-md-8 col-sm-8 bg-light text-light" id="room_container">
+    <div class="col-md-8 col-sm-8 bg-dark text-light" id="room_container">
         <% if @single_room %>
-            <h3 class="text-center", style="color: black; margin-top: 5px;"> <%= @user&.email || @single_room.name %> </h3>    
+            <h3 class="text-center", style="color: white; margin-top: 5px;"> <%= @user&.email || @single_room.name %> </h3>    
         <% end %>
 
         <div id="single_room">

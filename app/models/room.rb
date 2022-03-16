@@ -23,4 +23,8 @@ class Room < ApplicationRecord
 
     single_room
   end
+
+  def has_participant?(room, user)
+    room.participants.where(user_id: user.id, room_id: room.id).exists?
+  end
 end
