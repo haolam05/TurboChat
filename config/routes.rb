@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     get "users", to: "devise/sessions#new"
   end
 
-  get 'users/:id', to: 'users#show', as: 'user'
+  get 'users/:id', to: 'users#show', as: 'user' # goes to users controller show method
 
   # Defines the root path route ("/")
   # root "articles#index"

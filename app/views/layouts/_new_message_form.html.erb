@@ -1,6 +1,15 @@
 <div class="form-group msg-form">
-  <%= form_with(model: [@single_room, @message], remote: true, class: 'd-flex') do |f| %>
+  <%= form_with(model: [@single_room, @message], remote: true, class: 'd-flex', data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}) do |f| %>
     <%= f.text_field :content, id: 'chat-text', class: "form-control msg-content", autocomplete: 'off' %>
     <%= f.submit data: { disable_with: false }, class: "btn btn-primary", value: "Send" %>
   <% end %>
 </div>
+
+
+<%# looks at the model: [] => 
+  does not matter where this end up in the controllers, these 2 instance variables must be present. 
+    rooms/:id   => rooms controller #show
+    users/:id   => users controller #show
+    create new message => message controller #create
+    => all of these methods need @single_room && @message attributes
+%>

@@ -1,5 +1,5 @@
 <div style="margin-bottom: 10px">
-  <%= form_with(model: @room, remote: true, class: "d-flex" ) do |f| %>
+  <%= form_with(model: @room, remote: true, class: "d-flex", data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset"}) do |f| %>
     <%= f.text_field :name, class: "form-control", autocomplete: 'off', style: 'margin: 5px;' %>
     <%= f.submit data: { disable_with: false }, class: "btn btn-primary", value: "New Room", style: "margin-bottom: 3px" %>
   <% end %>
