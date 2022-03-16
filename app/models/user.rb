@@ -23,6 +23,27 @@ class User < ApplicationRecord
     avatar.variant(resize_to_limit: [50, 50]).processed
   end
 
+
+  # broadcast for status
+  after_update_commit { broadcast_update }
+  enum status: %i[offline away online]
+
+  def broadcast_update  # turbo stream from <div id="user_status"> 
+    broadcast_replace_to 'user_status', partial: 'users/status', user: self   # replace user status partial with the user_self(updated)
+  end
+
+  def status_to_css
+    case status
+    when 'online'
+      'bg-success'
+    when 'away'
+      'bg-warning'
+    else
+      'bg-dark'
+    end
+  end
+
+
   private
   def add_default_avatar
     return if avatar.attached?                                                          # if have an avatar => good

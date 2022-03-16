@@ -1,7 +1,9 @@
+<%= turbo_frame_tag "appearance_channel" %>
+<div id="appearance_channel"></div>
+
 <div id="chatroom_container" class="row bg-dark text-light">
   <div id="side_panel" class="col-md-4 col-sm-4">
-        <%# <h5> <%= current_user.email %>
-         <%# </h5>  %>
+        <%= render current_user %>
 
         <h3 style="margin: 5px; color: white"> Users </h3>
         <div>

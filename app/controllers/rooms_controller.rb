@@ -1,5 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
+  before_action  :set_status
 
   def index
     @room = Room.new
@@ -31,6 +32,11 @@ class RoomsController < ApplicationController
     end
   end
 
+  private
+
+  def set_status
+    current_user.update!(status: User.statuses[:online]) if current_user
+  end
   # def destroy
   #   @room = Room.find(params[:room_id])
   #   # if @room.user
