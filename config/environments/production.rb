@@ -91,6 +91,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Added as devise installation instruction --- ACTUAL HOST, URL to get to website in production
+  config.action_mailer.default_url_options = { host: 'https://....herokuapp.com' }
 
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # stores image on amazon s3
+  config.active_storage.service = :amazon
 end
