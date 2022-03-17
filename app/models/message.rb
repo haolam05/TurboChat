@@ -20,7 +20,7 @@ class Message < ApplicationRecord
     target = attachments[index]
     return unless attachments.attached?
 
-    if target.image?
+    if target.image?  
       target.variant(resize_to_limit: [150, 150]).processed
     elsif target.video?
       target.variant(resize_to_limit: [150, 150]).processed

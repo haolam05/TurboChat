@@ -1,0 +1,5 @@
+<div id="pager" class="text-center">
+  <% if pagy.next %>
+    <%= link_to("Load more messages", url_for(page: pagy.next), class: "btn btn-primary", data: { turbo_frame: "page_handler", controller: "autoclick" }) %>
+  <% end %>                           <%# url_for just grabs the current url => works for both room_path and message_path %>
+</div>

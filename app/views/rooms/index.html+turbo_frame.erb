@@ -1,0 +1,17 @@
+<%= turbo_frame_tag "page_handler" do %>            <%# target == div id %>
+  <%= turbo_stream_action_tag("prepend",    target: "messages-container",  template: %(#{render @messages})) %>
+  <%= turbo_stream_action_tag("replace",    target: "pager",               template: %(#{render "messages/pager", pagy: @pagy})) %>
+<% end %>   
+
+<%#
+    we have 1 turbo frame tag: 
+        + the message-container div(actual message)
+
+    turbo detects changes within the turbo_frame_tag, and triggers the above events
+    what change? when the button "load more messages" is CLICKED
+    how? clicked automatically by JS Stimulus autolcick controller when user scroll to top
+
+    the button is being clicked automatically, when the button is clicked, turbo will trigger the above events DUE TO CHANGES WIHTIN TURBO_FRAME_TAG
+        + prepend to the messages of the next page to the exisiting messages div of this page
+        + replaced the button with the link to the new @pagy page so that it can load the next page next time
+%>

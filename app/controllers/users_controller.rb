@@ -9,7 +9,10 @@ class UsersController < ApplicationController
         
         @message = Message.new
         @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, current_user], @room_name)
-        @messages = @single_room.messages.order(created_at: :asc)
+        
+        pagy_messages = @single_room.messages.order(created_at: :asc)
+        @pagy, messages = pagy(pagy_messages, items: 20)              # get latest 20 messages
+        @messages = messages.reverse
 
         render 'rooms/index'
     end
