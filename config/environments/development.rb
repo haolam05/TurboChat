@@ -70,7 +70,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   
-  # Store images locally.
+  # Store images locally -- active storage
   config.active_storage.service = :local
   config.action_controller.default_url_options = { host: 'localhost', port: 3000 }
 end

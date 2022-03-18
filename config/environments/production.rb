@@ -91,9 +91,28 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+
+
   # Added as devise installation instruction --- ACTUAL HOST, URL to get to website in production
   config.action_mailer.default_url_options = { host: 'https://git.heroku.com/railsturbochat555.git' }
 
   # stores image on amazon s3
   config.active_storage.service = :amazon
+
+  # for image processor
+  config.active_storage.variant_processor = :minimagick
+
+  # for heroku
+  # images sent won't work first time => noticable on heroku => set default url to be heroku url --- a fix for turbo
+    # If a default host is specifically defined then it's used otherwise the app is
+    # assumed to be a Heroku review app. Note that `Hash#fetch` is used defensively
+    # so the app will blow up at boot-time if both `DEFAULT_URL_HOST` and
+    # `HEROKU_APP_NAME` aren't defined.
+  host = ENV['DEFAULT_URL_HOST'] || "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
+  protocol = config.force_ssl ? 'https' : 'http'
+
+  config.action_controller.default_url_options = {
+    host: host,
+    protocol: protocol
+  }
 end
