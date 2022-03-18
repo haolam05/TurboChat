@@ -73,4 +73,5 @@ Rails.application.configure do
   # Store images locally -- active storage
   config.active_storage.service = :local
   config.action_controller.default_url_options = { host: 'localhost', port: 3000 }
+  config.active_storage.variant_processor = :mini_magick
 end
