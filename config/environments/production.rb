@@ -100,7 +100,7 @@ Rails.application.configure do
   config.active_storage.service = :amazon
 
   # for image processor
-  config.active_storage.variant_processor = :minimagick
+  config.active_storage.variant_processor = :mini_magick
 
   # for heroku
   # images sent won't work first time => noticable on heroku => set default url to be heroku url --- a fix for turbo
