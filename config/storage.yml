@@ -9,10 +9,10 @@ local:
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: <%= Rails.application.credentials.config[:aws][:access_key_id] %>
-  secret_access_key: <%= Rails.application.credentials.config[:aws][:secret_access_key] %>
-  bucket: <%= Rails.application.credentials.config[:aws][:bucket_name] %>
-  region: <%= Rails.application.credentials.config[:aws][:region] %> # e.g. 'us-east-1'
+  access_key_id: <%= Rails.application.credentials.config[:aws_access_key_id] %>
+  secret_access_key: <%= Rails.application.credentials.config[:aws_secret_access_key] %>
+  bucket: <%= Rails.application.credentials.config[:aws_bucket_name] %>
+  region: <%= Rails.application.credentials.config[:aws_region] %> # e.g. 'us-east-1'
 
 # example of digital ocean & S3
 # digitalocean:
