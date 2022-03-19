@@ -1,8 +1,9 @@
 class RoomsController < ApplicationController
+  before_action :set_user_name
   before_action :authenticate_user!
   before_action  :set_status
 
-  def index
+  def index      
     @room = Room.new
     @rooms = Room.public_rooms
     @users = User.all_except(@current_user)
@@ -48,6 +49,10 @@ class RoomsController < ApplicationController
   #   @room.destroy
   #   redirect_to rooms_path, notice: "Room was successfully deleted"
   # end
+
+  def set_user_name
+    current_user.update!(name: "") if current_user && current_user.name.nil?
+  end
 end
 
     # Message.where(room_id: params[:id]).each { |mess| Message.destroy(mess.id) }

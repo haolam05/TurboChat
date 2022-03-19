@@ -25,7 +25,7 @@
 
     <div class="col-md-8 col-sm-8 bg-dark text-light" id="room_container">
         <% if @single_room %>
-            <h3 class="text-center", style="color: white; margin-top: 5px;"> <%= @user&.email || @single_room.name %> </h3>    
+            <h3 class="text-center", style="color: white; margin-top: 5px;"> <%= @user&.name || @single_room.name %> </h3>    
         <% end %>
 
         <div id="single_room">
