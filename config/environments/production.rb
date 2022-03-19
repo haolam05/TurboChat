@@ -94,7 +94,7 @@ Rails.application.configure do
 
 
   # Added as devise installation instruction --- ACTUAL HOST, URL to get to website in production
-  config.action_mailer.default_url_options = { host: 'https://git.heroku.com/railsturbochat555.git' }
+  config.action_mailer.default_url_options = { host: 'https://railsturbochat555.herokuapp.com' }
 
   # stores image on amazon s3
   config.active_storage.service = :amazon
@@ -108,7 +108,7 @@ Rails.application.configure do
     # assumed to be a Heroku review app. Note that `Hash#fetch` is used defensively
     # so the app will blow up at boot-time if both `DEFAULT_URL_HOST` and
     # `HEROKU_APP_NAME` aren't defined.
-  host = ENV['DEFAULT_URL_HOST'] || "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
+  host = "#{ENV['HEROKU_APP_NAME']}.herokuapp.com" || ENV['DEFAULT_URL_HOST']
   protocol = config.force_ssl ? 'https' : 'http'
 
   config.action_controller.default_url_options = {
