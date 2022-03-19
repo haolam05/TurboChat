@@ -114,3 +114,33 @@
   right: 10px;
   position: absolute;
 }
+
+.img_center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.add_right_padding {
+  padding-right: 20px;
+}
+
+.add_left_padding {
+  padding-left: 20px;
+}
+
+.add_bottom_padding {
+  padding-bottom: 20px;
+}
+
+.add_top_padding {
+  padding-top: 20px;
+}
+
+.card_center {
+  border-color: #00B68C;
+  border: 5px solid;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
     
   get 'rooms/index'
-  # root 'pages#home'
+  get 'pages/home'
   root 'rooms#index'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -23,9 +23,6 @@ Rails.application.routes.draw do
   # end
   
   get 'users/:id', to: 'users#show', as: 'user' # goes to users controller show method
-
-
-  
 
   # Defines the root path route ("/")
   # root "articles#index"

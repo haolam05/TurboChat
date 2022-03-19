@@ -2,7 +2,7 @@
   <div class="message-box msg-<%= message.user.id %>">
   
     <div class="d-flex align-items-center">
-        <%= image_tag(message.user.chat_avatar, class:'chat_pfp') %>
+        <%= link_to image_tag(message.user.chat_avatar, class:'chat_pfp'), pages_home_path(:user_id => message.user.id ) %>
         <div>
             <h6 class="name"> <%= message.user.name %></h6>
             <p class="time"><%= time_ago_in_words(message.created_at) %> ago</p>

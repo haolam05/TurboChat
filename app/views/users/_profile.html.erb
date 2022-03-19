@@ -1,0 +1,16 @@
+<div class="jumbotron center" style="padding: 20px 0px 15px 30px;" style="display: flex;">
+    <div class="card .card-group card_center" style="background: #ccffff; margin: 40px 90px 40px 90px">
+    
+        <div class="card-title">
+            <h1 class="add_top_padding add_left_padding font-weight-bold center"><%= @curr_user.name %></h1>
+        </div>
+
+        <div class="card-body">
+            <%= link_to (image_tag(@curr_user.avatar, class: 'img_center')), @curr_user.avatar %>
+        </div>
+
+        <div class="card-footer">
+            <h3 class="add_top_padding add_left_padding">Email: <%= @curr_user.email %></p>
+        </div>
+    </div>
+</div>
