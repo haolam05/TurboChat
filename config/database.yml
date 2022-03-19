@@ -17,7 +17,7 @@
 default: &default
   adapter: postgresql
   host: localhost
-  #port: 5433
+  port: 5433
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
@@ -25,7 +25,6 @@ default: &default
 
 development:
   <<: *default
-    port: 5433
     database: <%= Rails.application.credentials.config[:DB_NAME][:dev_db] %>
     username: <%= Rails.application.credentials.config[:DB_USERNAME][:dev_db] %>
     password: <%= Rails.application.credentials.config[:DB_PASSWORD][:dev_db] %>
@@ -62,7 +61,6 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-    port: 5433
     database: <%= Rails.application.credentials[:DB_NAME][:test_db] %>
     username: <%= Rails.application.credentials[:DB_USERNAME][:test_db] %>
     password: <%= Rails.application.credentials[:DB_PASSWORD][:test_db] %>
@@ -90,7 +88,6 @@ test:
 #
 production:
   <<: *default
-    port: 5432
     database: <%= Rails.application.credentials.config[:DB_NAME][:prod_db] %>
     username: <%= Rails.application.credentials.config[:DB_USERNAME][:prod_db] %>
     password: <%= Rails.application.credentials.config[:DB_PASSWORD][:prod_db] %>
