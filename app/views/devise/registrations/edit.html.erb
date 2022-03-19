@@ -55,16 +55,3 @@
     <%= link_to "Back", :back, class: 'btn btn-secondary' %>
   </div>
 <% end %>
-
-<div class="row", style="padding: 20px 0px 15px 30px;">
-  <div class="col-sm-6", style=" background-color: gray;">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Cancel my account</h5>
-        <p>Are you sure?</p>
-        <p class="lead"><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
-      </div>
-    </div>
-  </div>
-</div>
-
