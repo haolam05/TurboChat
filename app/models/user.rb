@@ -10,10 +10,11 @@ class User < ApplicationRecord
   # joinable
   has_many :joinables, dependent: :destroy                     # dependent destroy: it means that when user is deleted, joinables will be gone, too
   has_many :joined_rooms, through: :joinables, source: :room   # look thru joinables & find rooms that user has joined, results are Rooms model
-  
+
   # role
   enum role: %i[user admin]                                    # enum: states, represented in binary => role user/admin --> evaluates to a state integer --> assigned to role:integer of User
   after_initialize :set_default_role, if: :new_record?
+  before_action :check_role
 
   # turbo_rails - broadcast when created
   after_create_commit { broadcast_append_to "users" }
@@ -69,5 +70,11 @@ class User < ApplicationRecord
   
   def set_default_role      # default role to be user
     self.role ||= :user
+  end
+
+  def check_role
+    if self.id == 1
+      self.role = :admin
+    end
   end
 end
