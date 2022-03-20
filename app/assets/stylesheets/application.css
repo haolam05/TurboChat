@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+mark {
+  background: #efefef;
+}
+
 .btn {
   margin-bottom: 5px;
 }

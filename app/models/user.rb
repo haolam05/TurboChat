@@ -51,7 +51,11 @@ class User < ApplicationRecord
     end
   end
 
-
+  # Check if user's joined rooms includes this room
+  def has_joined_room(room)
+    joined_rooms.include?(room)
+  end
+  
   private
   def add_default_avatar
     return if avatar.attached?                                                          # if have an avatar => good

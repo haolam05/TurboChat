@@ -5,8 +5,14 @@ Rails.application.routes.draw do
 
   resources :rooms do
     resources :messages
+    collection do 
+      post :search        # search_rooms_path
+    end
   end
     
+  get 'rooms/join/:id', to: 'rooms#join', as: 'join_room'       # join_room_path(room_id)   to Rooms controller, join action 
+  get 'rooms/leave/:id', to: 'rooms#leave', as: 'leave_room'    # leave_room_path(room_id)  to Rooms controller, leave action
+
   get 'rooms/index'
   get 'pages/home'
   root 'rooms#index'

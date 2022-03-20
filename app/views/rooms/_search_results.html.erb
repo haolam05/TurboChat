@@ -1,0 +1,6 @@
+<% rooms.each do |room| %>
+    <li class="list-group-item d-flex align-items-center justify-content-between room_list_item">
+        <%= link_to highlight(room.name, params[:name_search]), room_path(id: room.id, name_search: params[:name_search]), data: {turbo: "false"} %>
+        <%= render 'rooms/joinable_link', room: room, current_user: current_user %>
+    </li>
+<% end %>

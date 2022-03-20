@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
+    include RoomsHelper
+    
     def show
         @user = User.find(params[:id])
         @users = User.all_except(current_user)
 
         @room = Room.new
-        @rooms = Room.public_rooms
+        @joined_rooms = current_user.joined_rooms
+        @rooms = search_rooms
         @room_name = get_name(@user, current_user)
         
         @message = Message.new
