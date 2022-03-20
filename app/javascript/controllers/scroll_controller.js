@@ -10,6 +10,7 @@ export default class extends Controller {                                   // a
         console.log("Connected")
         const messages = document.getElementById("messages");
         messages.addEventListener("DOMNodeInserted", this.resetScroll);     // DOMNodeInsrted is when DOM inserts a new message
+        this.resetScrollWithoutThreshold(messages);                         // scroll down to new messages if within 500pixels to client
     }
 
     // stop

@@ -18,9 +18,9 @@ class RoomsController < ApplicationController
     @single_room = Room.find(params[:id])
 
     @message = Message.new
-
-    pagy_messages = @single_room.messages.order(created_at: :asc) # open room => #show action => show action render index page => room index page has access to @pagy
-    @pagy, messages = pagy(pagy_messages, items: 20)              # get latest 20 messages
+    
+    pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)  # open room => #show action => show action render index page => room index page has access to @pagy
+    @pagy, messages = pagy(pagy_messages, items: 10)                                # get latest 10 messages
     @messages = messages.reverse
 
     render 'index'

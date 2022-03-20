@@ -7,6 +7,14 @@ class User < ApplicationRecord
   # devise already take care of uniquess for user
   scope :all_except, ->(user) { where.not(id: user) }
 
+  # joinable
+  has_many :joinables, dependent: :destroy                     # dependent destroy: it means that when user is deleted, joinables will be gone, too
+  has_many :joined_rooms, through: :joinables, source: :room   # look thru joinables & find rooms that user has joined, results are Rooms model
+  
+  # role
+  enum role: %i[user admin]                                    # enum: states, represented in binary => role user/admin --> evaluates to a state integer --> assigned to role:integer of User
+  after_initialize :set_default_role, if: :new_record?
+
   # turbo_rails - broadcast when created
   after_create_commit { broadcast_append_to "users" }
   has_many :messages
@@ -53,5 +61,9 @@ class User < ApplicationRecord
       filename: 'default_avatar.png',
       content_type: 'image/png'
     )
+  end
+  
+  def set_default_role      # default role to be user
+    self.role ||= :user
   end
 end

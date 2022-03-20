@@ -18,11 +18,11 @@
 #attachment-previews {
     position: absolute;
     display: inline;
-    bottom: 120px;
+    bottom: 50px;
     height: 70px;
     width: 290px;
     overflow-y: hidden;
-    overflow-x: auto;
+    overflow-x: hidden;
     direction: rtl;
     white-space: nowrap;
 }

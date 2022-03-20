@@ -1,31 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark", style="margin-bottom: 3px;">
+<nav class=" container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand btn btn-light", style="color: #0099ff; font-size: 2rem", href="<%= rooms_path %>">
         <strong><i>TurboChat</i></strong>
     </a>
+     
+    <% if !current_user %>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+                <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary", style: 'margin-right: 5px' %>
+                <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-secondary", style: 'margin-right: 5px' %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent", style="justify-content: flex-end">
-        <% if !current_user %>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <%= link_to "Login", new_user_session_path, class: "btn btn-outline-secondary", style: 'margin-right: 5px' %>
-                </li>
-                <li class="nav-item dropdown">
-                    <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-outline-secondary", style: 'margin-right: 5px' %>
-                </li>
-            </ul>
-        <% else %>
-            <%# <form class="form-inline my-2 my-lg-2">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success my-2 my-sm-0" type="submit", style="margin-right: 10px;">Search</button>
-            </form> %>
-            <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary my-2 my-sm-0", style: 'margin-right: 15px' %>
-            <%= link_to "Edit Account", edit_user_registration_path, class: 'btn btn-outline-secondary' %>
-        <% end %>
-    </div>
-    <br>
+    <% else %>
+                <%# <form class="form-inline my-2 my-lg-2">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit", style="margin-right: 10px;">Search</button>
+                </form> %>
+                <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary", style: 'margin-right: 5px;' %>
+   
+                <%= link_to "Edit Account", edit_user_registration_path, class: 'btn btn-outline-secondary', style: 'margin-right: 5px' %>
+    <% end %>
 </nav>
 

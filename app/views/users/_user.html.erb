@@ -11,9 +11,5 @@
 
   </div>
 
-  <% if user == current_user %>
-    <%= user.name %>
-  <% else %>
-    <%= link_to user.name, user, class:'ms-2 me-auto username', data: {turbo: "false"} %>
-  <% end %>
+  <%= link_to user.name, user, class:'ms-2 me-auto username', data: {turbo: "false"} %>
 </li>

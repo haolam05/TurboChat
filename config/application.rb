@@ -21,8 +21,5 @@ module Turbochat
 
     # does not work prior to migration :) comment out
     # by default when server starts, all users must have status offline
-    config.after_initialize do |_config|
-      User.update_all(status: User.statuses[:offline])
-    end
   end
 end

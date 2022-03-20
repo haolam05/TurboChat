@@ -8,7 +8,10 @@ class Room < ApplicationRecord
   # only broadcast if public because if private, we already broadcast through the User model
   # all(for now) or online users are shown on the tab, so the room already exist(broadcasted)
 
-  has_many :messages
+  has_many :joinables, dependent: :destroy                    # dependent destroy: it means that when room is deleted, joinables will be gone, too
+  has_many :joined_users, through: :joinables, source: :user  # look thru joinables & find users that belongs to room, results are Users model
+
+  has_many :messages#, dependent: :destroy
   has_many :participants, dependent: :destroy
 
   def broadcast_if_public 

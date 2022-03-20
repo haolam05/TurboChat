@@ -20,8 +20,7 @@ export default class Autoclick extends Controller {
    */
   appear(entry) {
     if (!Autoclick.throttling) {
-      Autoclick.messagesContainer =
-        document.getElementById("messages-container");
+      Autoclick.messagesContainer = document.getElementById("messages-container");
       Autoclick.topMessage = Autoclick.messagesContainer.children[0];
       Autoclick.throttling = true;
       Autoclick.throttle(this.element.click(), 300);            // this == whatever called autoclick controller --- the load messages button we created
@@ -29,11 +28,11 @@ export default class Autoclick extends Controller {
       setTimeout(() => {                                        // click this button --- make sure click no more than 1 time every 300ms
         Autoclick.topMessage.scrollIntoView({
           behavior: "auto",                                     // smooth || auto || ...
-          block: "end",                                         // center || end  || start || ...
+          block: "start",                                         // center || end  || start || ...
         });
         console.log("Scrolling");
         Autoclick.throttling = false;
-      }, 250);
+      }, 500);
     }
   }
 
