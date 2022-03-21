@@ -49,8 +49,11 @@ class RoomsController < ApplicationController
     @message = Message.new
     
     pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)  # open room => #show action => show action render index page => room index page has access to @pagy
-    @pagy, messages = pagy(pagy_messages, items: 10)                                # get latest 10 messages
+    @pagy, messages = pagy(pagy_messages, items: 20)                                # get latest 10 messages
     @messages = messages.reverse
+
+    opentok = OpenTok::OpenTok.new Rails.application.credentials.vonage_api_key, Rails.application.credentials.vonage_api_secret
+    @token = opentok.generate_token @single_room.vonage_session_id, { name: current_user.name }
 
     render 'index'
   end

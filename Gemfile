@@ -77,3 +77,5 @@ gem "devise", "~> 4.8"
 gem "pagy", "~> 5.10"
 
 gem "aws-sdk-s3"
+
+gem "opentok", "~> 4.3"

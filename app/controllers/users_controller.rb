@@ -14,8 +14,11 @@ class UsersController < ApplicationController
         @single_room = Room.where(name: @room_name).first || Room.create_private_room([@user, current_user], @room_name)
         
         pagy_messages = @single_room.messages.includes(:user).order(created_at: :desc)
-        @pagy, messages = pagy(pagy_messages, items: 10)              # get latest 10 messages
+        @pagy, messages = pagy(pagy_messages, items: 20)              # get latest 10 messages
         @messages = messages.reverse
+        
+        opentok = OpenTok::OpenTok.new Rails.application.credentials.vonage_api_key, Rails.application.credentials.vonage_api_secret
+        @token = opentok.generate_token @single_room.vonage_session_id, { name: current_user.name }
 
         render 'rooms/index'
     end
