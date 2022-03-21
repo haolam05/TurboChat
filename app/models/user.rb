@@ -14,8 +14,9 @@ class User < ApplicationRecord
   # role
   enum role: %i[user admin]                                    # enum: states, represented in binary => role user/admin --> evaluates to a state integer --> assigned to role:integer of User
   after_initialize :set_default_role, if: :new_record?
-  after_initialize :set_admin
+  #after_initialize :set_admin
 
+  
   # turbo_rails - broadcast when created
   after_create_commit { broadcast_append_to "users" }
   has_many :messages

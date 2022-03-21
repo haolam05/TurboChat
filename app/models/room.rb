@@ -5,7 +5,7 @@ class Room < ApplicationRecord
     self.vonage_session_id = session.session_id
   end
 
-  after_initialize :assigned_vonage_session_id_to_existing_rooms
+  # after_initialize :assigned_vonage_session_id_to_existing_rooms
 
   validates_uniqueness_of :name                        
   scope :public_rooms, -> { where(is_private: false) } 
