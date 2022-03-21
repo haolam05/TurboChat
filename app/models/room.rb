@@ -5,6 +5,8 @@ class Room < ApplicationRecord
     self.vonage_session_id = session.session_id
   end
 
+  after_initialize :assigned_vonage_session_id_to_existing_rooms
+
   validates_uniqueness_of :name                        
   scope :public_rooms, -> { where(is_private: false) } 
 
@@ -35,5 +37,14 @@ class Room < ApplicationRecord
 
   def has_participant?(room, user)
     room.participants.where(user_id: user.id, room_id: room.id).exists?
+  end
+
+  private
+  def assigned_vonage_session_id_to_existing_rooms
+    if self.vonage_session_id.nil?
+      opentok = OpenTok::OpenTok.new Rails.application.credentials.vonage_api_key, Rails.application.credentials.vonage_api_secret
+      session = opentok.create_session
+      self.vonage_session_id = session.session_id
+    end
   end
 end

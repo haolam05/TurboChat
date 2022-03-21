@@ -38,7 +38,6 @@
                         <div id="messages-container"><%= render @messages %></div>          <%# prepend messages for next page to the top of the div %>
                         <%= render "messages/pager", pagy: @pagy.prev %>                    <%# a button to trigger "load more mess action" => update @messages %>
                     </div>
-
                 </div>
 
                 <%= render "layouts/new_message_form" %>  
