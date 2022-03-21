@@ -1,8 +1,10 @@
 <div id="videos"
     data-controller="vonage"
+    data-action="click->vonage#initializeSession"
     data-vonage-api-key="<%= Rails.application.credentials.vonage_api_key %>"
     data-vonage-session-id="<%= @single_room.vonage_session_id %>"
     data-vonage-token="<%= @token %>"
     data-vonage-name="<%= current_user.name %>"
-    >
+    ><i id="video_button" class="bi bi-camera-video video-button" style="color: #fff; text-align: left"> Video Call </i>
 </div>
+

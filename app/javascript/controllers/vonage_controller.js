@@ -7,12 +7,17 @@ export default class extends Controller {
     this.sessionId  = document.querySelector('#videos').dataset.vonageSessionId
     this.token      = document.querySelector('#videos').dataset.vonageToken
     this.name       = document.querySelector('#videos').dataset.vonageName
-    this.initializeSession()
   }
 
   disconnect() {
     if (this.session) {
       this.session.disconnect()
+      document.getElementById("messages").classList.toggle('d-none')
+      document.getElementById("msg_form").classList.toggle('d-none')
+      // document.getElementById("videos").classList.add('bi')
+      // document.getElementById("videos").classList.add('bi-camera-video')
+      // document.getElementById("videos").classList.add('video-button')
+      document.querySelector('#videos').dataset.action = 'click->vonage#initializeSession'
     }
   }
 
@@ -29,6 +34,13 @@ export default class extends Controller {
     }, this.handleError.bind(this))
 
     this.session.connect(this.token, this.streamConnected.bind(this))   // connect with publisher through created token
+    document.getElementById("messages").classList.add('d-none')
+    document.getElementById("msg_form").classList.add('d-none')
+    // document.getElementById("videos").classList.toggle('bi')
+    // document.getElementById("videos").classList.toggle('bi-camera-video')
+    // document.getElementById("videos").classList.toggle('video-button')
+    document.querySelector('#videos').dataset.action = ''
+    document.getElementById("video_button").classList.add('d-none')
   }
   // *******************************************************************
 
