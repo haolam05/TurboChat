@@ -27,20 +27,20 @@
 
     <% if @single_room %>
         <div class="col-md-8 col-sm-8 bg-dark text-light" id="room_container", style="margin-top: 1px;">
-                <h3 class="text-center", style="color: white; margin-top: 5px;"> <%= @user&.name || @single_room.name %> </h3>   
-               
-                <div id="single_room">     
-                    <%= render "rooms/videos" %>
-                    <%= turbo_stream_from @single_room %>
-                    <div id="messages" data-controller="scroll">
-                        <% turbo_frame_tag "page_handler" %>
-                        <%= render "messages/pager", pagy: @pagy.next %>                    <%# a button to trigger "load more mess action" => update @messages %>
-                        <div id="messages-container"><%= render @messages %></div>          <%# prepend messages for next page to the top of the div %>
-                        <%= render "messages/pager", pagy: @pagy.prev %>                    <%# a button to trigger "load more mess action" => update @messages %>
-                    </div>
+            <h3 class="text-center", style="color: white; margin-top: 5px;"> <%= @user&.name || @single_room.name %> </h3>   
+            
+            <div id="single_room">     
+                <%= render "rooms/videos" %>
+                <%= turbo_stream_from @single_room %>
+                <div id="messages" data-controller="scroll">
+                    <% turbo_frame_tag "page_handler" %>
+                    <%= render "messages/pager", pagy: @pagy.next %>                    <%# a button to trigger "load more mess action" => update @messages %>
+                    <div id="messages-container"><%= render @messages %></div>          <%# prepend messages for next page to the top of the div %>
+                    <%= render "messages/pager", pagy: @pagy.prev %>                    <%# a button to trigger "load more mess action" => update @messages %>
                 </div>
+            </div>
 
-                <%= render "layouts/new_message_form" %>  
+            <%= render "layouts/new_message_form" %>  
         </div>
     <% else %>
         <div class="center col-md-8 col-sm-8 bg-dark text-dark" id="room_container">
