@@ -1,0 +1,18 @@
+<% isActive = (@single_room && @single_room.has_participant?(@single_room, user) ? 'Active' : '' ) %>
+
+<li class="list-group-item user_list_item">
+  <div class="row">
+    <div class="col-12 d-flex align-items-center justify-content-between <%= isActive %>">
+      <%= link_to image_tag(user.chat_avatar, class: 'chat_pfp'), pages_home_path(:user_id => user) %>
+
+      <%= turbo_stream_from "user_status" %>
+      <div><%= render "users/status", user: user %></div>
+    </div>
+  </div>
+
+  <%= link_to user.name, (user == current_user ? rooms_path : user ), class:'ms-2 me-auto username', data: {turbo: "false"} %>
+
+  <%= turbo_frame_tag [dom_id(room), "last_message"] do %>
+    <%= render "rooms/last_message", last_message: last_message %>
+  <% end %>
+</li>

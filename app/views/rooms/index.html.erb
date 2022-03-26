@@ -4,13 +4,13 @@
 
 <div id="chatroom_container" class="row bg-dark text-light" style="background: #1a1a1a">
   <div id="side_panel" class="col-md-4 col-sm-4">
-        <%= render current_user %>
+        <%= render current_user %> 
 
         <h3 style="margin: 5px; color: white"> Users </h3>
         <div>
             <%= turbo_stream_from "users" %>
             <div id="users">
-                <%= render @users %>
+                <%= render "users/users", users: @users, user: current_user %>
             </div>
         </div>
 
