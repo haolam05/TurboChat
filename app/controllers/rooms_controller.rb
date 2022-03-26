@@ -34,8 +34,9 @@ class RoomsController < ApplicationController
     @room = Room.new
     @joined_rooms = current_user.joined_rooms.order('last_message_at DESC')
     @rooms = search_rooms
-    @users = User.all_except(@current_user)
     
+    @private_rooms, @users = search_private_rooms_and_their_users
+
     render 'index'
   end
 

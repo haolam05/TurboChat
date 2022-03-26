@@ -1,3 +1,8 @@
-<% users.each do |user| %>
-    <%= render 'users/user', user: user %>
+<% users.each_with_index do |user, i| %>
+    <%= turbo_frame_tag dom_id(@private_rooms[i]) do %>
+    <%= render 'users/user_container',
+            room: @private_rooms[i],
+            last_message: @private_rooms[i].latest_message, 
+            user: @users[i] %>
+    <% end %>
 <% end %>

@@ -1,8 +1,14 @@
-<% room = Room.where(name: "private_#{[current_user.id, user.id].sort.join("_")}").first %>
+<% isActive = (@single_room && @single_room.has_participant?(@single_room, user) ? 'Active' : '' ) %>
 
-<%= turbo_frame_tag dom_id(room) do %>
-  <%= render 'users/user_container',
-        room: room,
-        last_message: room.latest_message, 
-        user: user %>
-<% end %>
+<li class="list-group-item d-flex align-items-center justify-content-between user_list_item <%= isActive %>">
+  <div class='icon-container'>
+
+    <%# <%= link_to image_tag(user.chat_avatar, class: 'chat_pfp'), user %> 
+    <%= link_to image_tag(user.chat_avatar, class: 'chat_pfp'), pages_home_path(:user_id => user) %>
+    <%= turbo_stream_from "user_status" %>
+    <div><%= render "users/status", user: user %></div>
+
+  </div>
+
+  <%= link_to user.name, user, class:'ms-2 me-auto username', data: {turbo: "false"} %>
+</li> 
