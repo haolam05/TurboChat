@@ -2,8 +2,11 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :room
 
-  after_create_commit { broadcast_append_to self.room }
-  
+  after_create_commit do
+    update_parent_room
+    broadcast_append_to self.room 
+  end
+
   before_create :confirm_participant
 
   def confirm_participant
@@ -25,5 +28,10 @@ class Message < ApplicationRecord
     elsif target.video?
       target.variant(resize_to_limit: [150, 150]).processed
     end
+  end
+
+  # when a message is created, update the room's last_message_at
+  def update_parent_room
+    room.update(last_message_at: Time.now)
   end
 end

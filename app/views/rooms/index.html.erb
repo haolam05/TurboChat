@@ -20,7 +20,7 @@
             <%= render "rooms/search_form" %> 
             <%= render "layouts/new_room_form" %> 
             <div id="rooms">
-                <%= render @joined_rooms %>
+                <%= render "rooms/rooms", rooms: @joined_rooms, user: current_user %>
             </div>
         </div>
     </div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   # get 'users/show'
   resources :rooms
   delete 'rooms/:id', to: 'rooms#destroy'

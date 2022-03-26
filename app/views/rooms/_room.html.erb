@@ -1,10 +1,6 @@
-<% if room && current_user && current_user.has_joined_room(room) #room.eql?(current_user.current_room_id) %>
-  <% isActive = 'active' %>
-<% else %>
-  <% isActive = '' %>
+<%= turbo_frame_tag dom_id(room) do %>
+  <%= render 'rooms/room_container',
+        room: room,
+        last_message: last_message, 
+        user: user %>
 <% end %>
-
-<li class="list-group-item d-flex align-items-center justify-content-between room_list_item <%= isActive %>"> 
-    <%= link_to room.name, room, data: {turbo: "false"}, class:'ms-2 me-auto' %>
-    <%= render 'rooms/joinable_link', room: room %>
-</li>

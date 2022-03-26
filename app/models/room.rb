@@ -12,7 +12,8 @@ class Room < ApplicationRecord
 
   # turbo_rails - broadcast when created
   # after_create_commit { broadcast_append_to "rooms" }
-  after_create_commit { broadcast_if_public }
+  # after_create_commit { broadcast_if_public }
+  after_update_commit { broadcast_latest_message }
   # only broadcast if public because if private, we already broadcast through the User model
   # all(for now) or online users are shown on the tab, so the room already exist(broadcasted)
 
@@ -22,8 +23,20 @@ class Room < ApplicationRecord
   has_many :messages#, dependent: :destroy
   has_many :participants, dependent: :destroy
 
-  def broadcast_if_public 
-    broadcast_append_to "rooms" unless self.is_private
+  # def broadcast_if_public 
+  #   broadcast_append_to "rooms" unless self.is_private
+  # end
+
+  def broadcast_latest_message
+    return unless latest_message    # no latest message
+
+    broadcast_replace_to('rooms',
+                        target: "room_#{self.id} last_message",
+                        partial: "rooms/last_message",
+                        locals: { last_message: latest_message,
+                                  room: self
+                                }
+                        )
   end
 
   def self.create_private_room(users, room_name)
@@ -37,6 +50,10 @@ class Room < ApplicationRecord
 
   def has_participant?(room, user)
     room.participants.where(user_id: user.id, room_id: room.id).exists?
+  end
+
+  def latest_message
+    messages.includes(:user).order(created_at: :desc).first
   end
 
   private

@@ -79,3 +79,5 @@ gem "pagy", "~> 5.10"
 gem "aws-sdk-s3"
 
 gem "opentok", "~> 4.3"
+
+gem "rack-cors", "~> 1.1"
