@@ -46,6 +46,7 @@ class RoomsController < ApplicationController
     @joined_rooms = current_user.joined_rooms.order('last_message_at DESC')
     @rooms = search_rooms
     @single_room = Room.find(params[:id])
+    @private_rooms, @users = search_private_rooms_and_their_users
 
     @message = Message.new
     

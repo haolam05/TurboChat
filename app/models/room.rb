@@ -30,7 +30,7 @@ class Room < ApplicationRecord
   def broadcast_latest_message
     return unless latest_message    # no latest message
 
-    broadcast_replace_to('rooms',
+    broadcast_update_to('rooms',
                         target: "room_#{self.id} last_message",
                         partial: "rooms/last_message",
                         locals: { last_message: latest_message,
