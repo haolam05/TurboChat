@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :rooms do
     resources :messages
     collection do 
-      post :search        # search_rooms_path
+      post :search              # search_rooms_path
+    end
+
+    collection do
+      post :search_private      # search_private_rooms_path
     end
   end
     

@@ -1,0 +1,11 @@
+<% if friends %>
+    <div data-controller="reset-form", data-action= "turbo:submit-end->reset-form#reset">
+        <% friends.each do |friend| %>
+                <li class="list-group-item d-flex align-items-center justify-content-between room_list_item">
+                    <%= link_to highlight(friend.email, params[:email_search]), user_path(friend, email_search: params[:email_search]), data: {turbo: "false"} %>
+                    <%= link_to highlight(friend.name, params[:email_search]), user_path(friend, email_search: params[:email_search]), data: {turbo: "false"} %>
+                </li>
+        <% end %>
+    </div>
+<% end %>
+

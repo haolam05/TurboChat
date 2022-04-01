@@ -1,0 +1,11 @@
+<div style="margin-bottom: 5px;">
+  <% if current_user %>
+    <%= form_with url: search_private_rooms_path, method: :post, data: { controller: 'user' }, id: "user_search_form" do |form| %>
+      <%= form.search_field :email_search, value: nil, class: "room_search_field", placeholder: "Search Friends by Email or Name...", data: { action: "input->user#search"} %>
+    <% end %>                                                                     <%# oninput: "this.form.requestSubmit()" %>
+
+    <div id="users_search_results">
+      <%= render 'users/search_results', friends: @friends %>
+    </div>
+  <% end %>
+</div>

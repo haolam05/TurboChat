@@ -18,6 +18,18 @@ class RoomsController < ApplicationController
     end
   end
 
+  def search_private
+    @friends = search_private_rooms
+
+    respond_to do |format|
+        format.turbo_stream do
+            render turbo_stream: [ 
+                turbo_stream.update("users_search_results", partial: "users/search_results", locals: { friends: @friends }) 
+            ]
+        end
+    end
+  end
+
   def join
     @room = Room.find(params[:id])
     current_user.joined_rooms << @room

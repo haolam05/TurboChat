@@ -23,4 +23,10 @@ module RoomsHelper
     
     [private_rooms, private_rooms_users]
   end
+
+  def search_private_rooms
+    if params.dig(:email_search).present? && params.dig(:email_search).length > 0
+      User.where('email ILIKE (?)', "%#{params[:email_search]}%") + User.where('name ILIKE (?)', "%#{params[:email_search]}%")
+    end
+  end
 end
